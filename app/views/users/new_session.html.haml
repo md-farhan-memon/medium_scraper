@@ -1,0 +1,10 @@
+- provide(:title, 'SignIn')
+%h1.page-header{align: 'center'} SignIn
+= form_for User.new, url: login_users_path do |f|
+  = f.label :email
+  = f.email_field :email, class: 'form-control'
+  = f.label :password
+  = f.password_field :password, class: 'form-control'
+  %br
+  .actions
+    = f.submit 'SignIn', class: 'btn btn-primary'

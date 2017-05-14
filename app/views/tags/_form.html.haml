@@ -1,0 +1,24 @@
+- modal ||= false
+- remote = modal ? true : false
+- @tag = Tag.new
+= form_for(@tag, remote: remote, html: {role: :form, 'data-model' => 'tag'}) do |f|
+  - if @tag.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@tag.errors.count, "error")
+        prohibited this tag from being saved:
+      %ul
+        - @tag.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :name, class: 'control-label'
+    %br
+    = f.text_field :name, class: 'form-control'
+    %span.help-block
+  .form-group
+    = f.label :slug, class: 'control-label'
+    %br
+    = f.text_field :slug, class: 'form-control'
+    %span.help-block
+  .actions
+    = f.submit 'Submit', class: 'btn btn-default'

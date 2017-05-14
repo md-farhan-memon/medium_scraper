@@ -1,0 +1,33 @@
+%header.navbar.navbar-default.navbar-fixed-top{role: "navigation"}
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{href: root_path} MediumScraper
+        .navbar-collapse.collapse
+          .col-sm-4.col-md-4
+            #search
+              = form_tag pull_scrape_path, method: 'get', class: 'navbar-form', role: 'search' do
+                .input-group
+                  = text_field_tag :query, params[:query], size: 150, placeholder: "Search", class: "form-control"
+                  .input-group-btn
+                    = button_tag(type: "submit", class: "btn btn-default") do
+                      %i.glyphicon.glyphicon-search
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user.present?
+              %li
+                = link_to "Pull Blogs", scrape_latest_path
+              %li
+                = link_to "LogOut", logout_users_path, method: "delete"
+            - else
+              %li
+                = link_to "Scrape New Blogs", '#new_tag_modal', 'data-toggle' =>  "modal"
+              %li
+                = link_to "LogIn", new_session_users_path
+              %li
+                = link_to "SignUp", new_users_path
