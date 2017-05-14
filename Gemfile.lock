@@ -57,6 +57,11 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    delayed_job (4.1.2)
+      activesupport (>= 3.0, < 5.1)
+    delayed_job_active_record (4.1.1)
+      activerecord (>= 3.0, < 5.1)
+      delayed_job (>= 3.0, < 5)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -186,6 +191,8 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
+  delayed_job
+  delayed_job_active_record
   haml-rails
   httparty
   jquery-rails

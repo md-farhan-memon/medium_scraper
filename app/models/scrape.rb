@@ -23,6 +23,7 @@ class Scrape < ApplicationRecord
 
     def fetch(url, tag)
       response = HTTParty.get(url)
+      # byebug
       data = JSON.parse Nokogiri::HTML(response.body).text.gsub("])}while(1);",'')
       if data['success']
         store_data(data['payload'], tag)

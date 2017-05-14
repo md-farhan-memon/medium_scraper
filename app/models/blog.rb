@@ -4,6 +4,11 @@ class Blog < ApplicationRecord
   has_many :tags, through: :taggings
   self.per_page = 10
 
+  after_create_commit do
+    # byebug
+    BlogCreationEventBroadcastJob.perform_later(self)
+  end
+
   def self.store_post(post, bloggers_data)
     blogger = Blogger.where(user_id: post['creatorId']).first_or_initialize
     blogger = blogger.store(bloggers_data) if blogger.new_record?

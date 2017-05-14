@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'blogs#latest'
+  mount ActionCable.server => '/cable'
 
   resource :users, only: [:new, :create] do
     collection do

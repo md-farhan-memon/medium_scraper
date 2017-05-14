@@ -1,18 +1,17 @@
-- blogs.each do |blog|
-  %h2
-    %a{href: blog_path(blog)}= blog.title
-  .row
-    .group1.col-sm-6.col-md-6
-      %span.glyphicon.glyphicon-pencil
-      %a{href: blogger_path(blog.blogger)}= blog.blogger.name
-    .group2.col-sm-6.col-md-6{style: "text-align: right;"}
-      %span.glyphicon.glyphicon-eye-open
-      = blog.details.split('-')[-1].strip
-      %span.glyphicon.glyphicon-time
-      = blog.details.split('-')[0].strip
-  %hr
-  %p.lead{style: "text-align: justify;"}= truncate(Nokogiri::HTML(blog.content).text, length: 250)
-  %p.text-right
-    %a{href: blog_path(blog)}
-      continue reading...
-  %hr
+%h2
+  %a{href: blog_path(blog)}= blog.title
+.row
+  .group1.col-sm-6.col-md-6
+    %span.glyphicon.glyphicon-pencil
+    %a{href: blogger_path(blog.blogger)}= blog.blogger.name
+  .group2.col-sm-6.col-md-6{style: "text-align: right;"}
+    %span.glyphicon.glyphicon-eye-open
+    = blog.details.split('-')[-1].strip
+    %span.glyphicon.glyphicon-time
+    = blog.details.split('-')[0].strip
+%hr
+%p.lead{style: "text-align: justify;"}= truncate(Nokogiri::HTML(blog.content).text, length: 250)
+%p.text-right
+  %a{href: blog_path(blog)}
+    continue reading...
+%hr

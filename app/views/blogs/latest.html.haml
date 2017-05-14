@@ -1,3 +1,4 @@
 %article
-  = render partial: 'listing', locals: {blogs: @blogs}
+  - @blogs.each do |blog|
+    = render partial: 'listing', locals: {blog: blog}
 = button_to "Browse all Blogs", blogs_path, method: 'get', class: "btn btn-primary btn-block"
