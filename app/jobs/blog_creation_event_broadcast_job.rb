@@ -3,7 +3,7 @@ class BlogCreationEventBroadcastJob < ApplicationJob
 
   def perform(blog)
     ActionCable.server.broadcast('blogs_channel', {
-      description: render_description(blog)
+      blog: render_description(blog)
     })
   end
 
