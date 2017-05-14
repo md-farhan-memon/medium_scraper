@@ -11,13 +11,6 @@
           %a.navbar-brand{href: root_path} MediumScraper
         .navbar-collapse.collapse
           .col-sm-4.col-md-4
-            #search
-              = form_tag pull_scrape_path, method: 'get', class: 'navbar-form', role: 'search' do
-                .input-group
-                  = text_field_tag :query, params[:query], size: 150, placeholder: "Search", class: "form-control"
-                  .input-group-btn
-                    = button_tag(type: "submit", class: "btn btn-default") do
-                      %i.glyphicon.glyphicon-search
           %ul.nav.navbar-nav.navbar-right
             - if current_user.present?
               %li

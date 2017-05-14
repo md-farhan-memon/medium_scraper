@@ -1,24 +1,37 @@
-- modal ||= false
-- remote = modal ? true : false
-- @tag = Tag.new
-= form_for(@tag, remote: remote, html: {role: :form, 'data-model' => 'tag'}) do |f|
-  - if @tag.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@tag.errors.count, "error")
-        prohibited this tag from being saved:
-      %ul
-        - @tag.errors.full_messages.each do |msg|
-          %li= msg
-  .form-group
-    = f.label :name, class: 'control-label'
-    %br
-    = f.text_field :name, class: 'form-control'
-    %span.help-block
-  .form-group
-    = f.label :slug, class: 'control-label'
-    %br
-    = f.text_field :slug, class: 'form-control'
-    %span.help-block
-  .actions
-    = f.submit 'Submit', class: 'btn btn-default'
+#search{height:400, width:800}
+= form_tag pull_scrape_path, method: :post, class: 'navbar-form', role: 'search' do
+  .input-group
+    = text_field_tag :query, params[:query], size: 150, placeholder: "Search", class: "form-control"
+    .input-group-btn
+      = button_tag(type: "submit", class: "btn btn-default") do
+        %i.glyphicon.glyphicon-search
+
+= progress_bar 0.6, label: true, style: 'min-width: 20px'
+
+:javascript
+  var titles = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    identify: function(obj) { return obj.title; },
+    local: [{'title': 'abc'},{'title': 'xyz'},{'title': 'hji'},{'title': 'fgh'},{'title': 'def'}],
+  });
+
+  function titleWithDefaults(q, sync) {
+    if (q === '') {
+      sync(titles.get('abc', 'xyz'));
+    }
+
+      else {
+    titles.search(q, sync);
+    }
+  }
+
+  $('#Search .input-group .form-control').typeahead({
+    highlight: true,
+    minLength: 0
+  },
+  {
+    name: 'titles',
+    display: 'title',
+    source: titleWithDefaults
+  });

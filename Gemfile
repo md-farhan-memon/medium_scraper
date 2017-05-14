@@ -34,6 +34,8 @@ gem 'awesome_print'
 
 gem "haml-rails"
 gem 'httparty'
+gem 'twitter-typeahead-rails'
+gem 'bootstrap_progressbar'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

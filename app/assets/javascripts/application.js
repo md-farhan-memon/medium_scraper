@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap/modal
+//= require twitter/typeahead.min
 //= require_tree .
