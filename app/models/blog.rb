@@ -21,6 +21,7 @@ class Blog < ApplicationRecord
       link: url
     )
     generate_taggings(post['virtuals']['tags'])
+    ActionCable.server.broadcast('blogs', blog: self)
   end
 
   def url(blogger, slug)
