@@ -1,0 +1,3 @@
+%article
+  = render partial: 'listing', locals: {blogs: @blogs}
+= button_to "Browse all Blogs", blogs_path, method: 'get', class: "btn btn-primary btn-block"

@@ -1,2 +1,5 @@
+%article
+  #blog
+  = render partial: 'listing', locals: {blogs: @blogs}
 %ul.pager
-  = will_paginate @posts, renderer: BootstrapPagination::Rails
+  = will_paginate @blogs, renderer: BootstrapPagination::Rails

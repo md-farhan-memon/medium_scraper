@@ -9,8 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :blogs, only: :index do
+  resources :blogs, only: [:index, :show] do
   end
+
+  resources :bloggers, only: [:show]
 
   resources :tags
 
