@@ -9,24 +9,24 @@ class UsersController < ApplicationController
 
   def create
     if User.create(user_params)
-      redirect_to '/'
+      redirect_to '/' and return
     else
-      redirect_to new_user_path
+      redirect_to new_users_path
     end
   end
 
   def login
-    if (user = User.find_by_email(params[:email])).present? && user.authenticate(params[:password])
+    if (user = User.find_by_email(user_params[:email])).present? && user.authenticate(user_params[:password])
       session[:user_id] = user.id
-      redirect_to '/'
+      redirect_to '/' and return
     else
-      redirect_to new_session_user_path
+      redirect_to new_session_users_path
     end
   end
 
   def logout
     session[:user_id] = nil
-    redirect_to new_session_user_path
+    redirect_to new_session_users_path
   end
 
   private

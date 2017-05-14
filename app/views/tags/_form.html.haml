@@ -1,24 +1,13 @@
-- modal ||= false
-- remote = modal ? true : false
-- @tag = Tag.new
-= form_for(@tag, remote: remote, html: {role: :form, 'data-model' => 'tag'}) do |f|
-  - if @tag.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@tag.errors.count, "error")
-        prohibited this tag from being saved:
-      %ul
-        - @tag.errors.full_messages.each do |msg|
-          %li= msg
-  .form-group
-    = f.label :name, class: 'control-label'
+#search
+  %link{:href => "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css", :rel => "stylesheet"}
+  %script{:src => "https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"}
+  = form_tag pull_scrape_path, method: :post, class: 'navbar-form', role: 'search' do
+    %div{align: 'center'}
+      %input{:checked => "checked", "data-off" => "Fetch Next Page", "data-offstyle" => "info", "data-on" => "Fetch Latest", "data-onstyle" => "primary", "data-toggle" => "toggle", :type => "checkbox", 'data-width' => 200, name: 'latest', id: 'latest'}
     %br
-    = f.text_field :name, class: 'form-control'
-    %span.help-block
-  .form-group
-    = f.label :slug, class: 'control-label'
     %br
-    = f.text_field :slug, class: 'form-control'
-    %span.help-block
-  .actions
-    = f.submit 'Submit', class: 'btn btn-default'
+    .input-group
+      = text_field_tag :query, params[:query], size: 150, placeholder: "Search", class: "form-control"
+      .input-group-btn
+        = button_tag(type: "submit", class: "btn btn-default") do
+          %i.glyphicon.glyphicon-search

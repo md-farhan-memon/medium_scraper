@@ -2,14 +2,14 @@ class Scrape < ApplicationRecord
   DOMAIN = 'https://medium.com'
   class << self
 
-    def pull_data(tag, next_page)
-      fetch(url(tag, next_page), tag)
+    def pull_data(tag, latest)
+      fetch(url(tag, !latest), tag)
     end
 
     private
 
     def url(tag, next_page)
-      web_url = if next_page && (tag = Tag.find_by_slug(tag)).present? && (next_page = JSON.parse(tag.next_page)).present?
+      web_url = if next_page && (db_tag = Tag.find_by_slug(tag)).present? && (next_page = JSON.parse(db_tag.next_page)).present?
                   "#{DOMAIN}#{next_page['path']}?limit=#{next_page['next']['limit']}&to=#{next_page['next']['to']}"
                 else
                   "#{DOMAIN}/topic/#{tag}"

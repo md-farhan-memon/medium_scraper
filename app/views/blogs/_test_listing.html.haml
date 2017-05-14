@@ -1,0 +1,18 @@
+%input#new_item{:name => "description", :placeholder => "New Item", :type => "text"}/
+#to_do_list_container
+  %h3
+    To Do List
+    %span.arrange-items{:for => "#to_do_list"}
+      Arrange items
+      %span
+  %ul#to_do_list
+    - for item in @undone_items do
+      = render 'item', item: item
+  %h3
+    Done List
+    %span.arrange-items{:for => "#done_list"}
+      Arrange items
+      %span
+  %ul#done_list
+    - for item in @done_items do
+      = render "item", item: item

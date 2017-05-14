@@ -1,5 +1,6 @@
 class Blogger < ApplicationRecord
   has_many :blogs, inverse_of: :blogger
+  self.per_page = 10
 
   def store(bloggers_data)
     data = find_blogger(bloggers_data)

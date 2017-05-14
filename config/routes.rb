@@ -9,16 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :blogs, only: [:index, :show] do
-  end
+  resources :blogs, only: [:index, :show]
 
   resources :bloggers, only: [:show]
 
-  resources :tags
-
-  resource :scrape, only: [:new] do
+  resource :scrape, only: [] do
     collection do
-      get :latest
       post :pull
     end
   end

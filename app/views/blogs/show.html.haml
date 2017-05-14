@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-md-10.col-md-offset-1
+      .row
+        %article
+          %h2= @blog.title
+          .row
+            .group1.col-sm-6.col-md-6
+              %span.glyphicon.glyphicon-pencil
+              %a{href: blogger_path(@blog.blogger)}= @blog.blogger.name
+              %span.glyphicon.glyphicon-eye-open
+              = @blog.details.split('-')[-1].strip
+              %span.glyphicon.glyphicon-time
+              = @blog.details.split('-')[0].strip
+            .group2.col-sm-6.col-md-6{style: "text-align: right;"}
+              %span.glyphicon.glyphicon-globe
+              %a{href: @blog.link} Actual Link of Blog
+          %hr
+          %p.lead{style: "text-align: justify;"}= @blog.content.html_safe
+          %hr
